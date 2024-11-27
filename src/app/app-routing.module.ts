@@ -5,8 +5,10 @@ import { ProfintroComponent } from './profintro/profintro.component';
 
 const routes: Routes = [
   { path: '',redirectTo: 'profintro', pathMatch: 'full' },
-  { path: 'portfolio', component: PortfolioComponent },
+  
   { path: 'profintro', component: ProfintroComponent }, 
+
+  { path: 'portfolio', component: PortfolioComponent },
 ];
 
 @NgModule({

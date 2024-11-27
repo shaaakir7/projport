@@ -4,7 +4,9 @@
 * {
 	box-sizing: border-box;
 }
-
+body{
+	overflow: hidden !important;
+}
 .bgchange {
 	background: #3c3c3c;
 	display: flex;
@@ -12,7 +14,7 @@
 	align-items: center;
 	flex-direction: column;
 	font-family: 'Montserrat', sans-serif;
-	height: 85vh;
+	height: 104vh;
 	margin: -20px 0 0px;
 }
 
@@ -78,7 +80,7 @@ button.ghost {
 }
 form .ghost{
     border-color: black;
-    top:70px;
+    top:42px;
 }
 .portb{
     font-weight: lighter;
@@ -112,9 +114,13 @@ input {
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
-    top: 3rem;
+    top: 0rem;
 }
-
+@media (min-width: 700px) and (max-width: 1920px) {
+	.container {
+		min-height: 410px;
+	}
+}
 
 .form-container {
 	position: absolute;
@@ -394,4 +400,69 @@ footer a {
 }
 
    
+// @keyframes fadeIn {
+// 	0% { opacity: 0; }
+// 	100% { opacity: 1; }
+//   }
+  
+//   /* Apply fade-in effect to elements */
+//   .fade-in {
+// 	animation: fadeIn 2s ease-in-out;
+//   }
 
+
+  @keyframes fadeUp {
+	from {
+	  opacity: 0;      /* Start with invisible */
+	  transform: translateY(100px); /* Start 20px lower */
+	}
+	to {
+	  opacity: 1;      /* End as fully visible */
+	  transform: translateY(0);    /* End at its normal position */
+	}
+  }
+  .fade-up {
+	animation: fadeUp 2s ease-out; /* 1 second duration */
+  }
+
+  @keyframes fadeDown {
+	from {
+	  opacity: 0;      /* Start with invisible */
+	  transform: translateY(-200px); /* Start 20px lower */
+	}
+	to {
+	  opacity: 1;      /* End as fully visible */
+	  transform: translateY(0);    /* End at its normal position */
+	}
+  }
+  .fade-down {
+	animation: fadeDown 2s ease-out; /* 1 second duration */
+  }
+
+  @keyframes fadeRight {
+	from {
+	  opacity: 0;      /* Start with invisible */
+	  transform: translateX(-200px); /* Start 20px lower */
+	}
+	to {
+	  opacity: 1;      /* End as fully visible */
+	  transform: translateX(0);    /* End at its normal position */
+	}
+  }
+  .fade-right {
+	animation: fadeRight 2s ease-out; /* 1 second duration */
+  }
+
+  @keyframes fadeLeft {
+	from {
+	  opacity: 0;      /* Start with invisible */
+	  transform: translateX(200px); /* Start 20px lower */
+	}
+	to {
+	  opacity: 1;      /* End as fully visible */
+	  transform: translateX(0);    /* End at its normal position */
+	}
+  }
+  .fade-left {
+	animation: fadeLeft 2s ease-out; /* 1 second duration */
+  }

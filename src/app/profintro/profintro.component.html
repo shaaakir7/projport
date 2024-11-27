@@ -1,96 +1,30 @@
-<div class="bgchange" fxLayout fxLayoutAlign="center center">
-    <div class="container" [class.right-panel-active]="rightPanelActive" >
-        <div class="form-container sign-up-container">
-            <form action="#">
-                <div class="w-52 flex items-center justify-center p-6">
-                    <img src="..\assets\images\shakir.jpg" alt="me" class="shakir">
-                </div>
-                <button class="ghost portb text-sans text-sm rounded-full py-2 px-3" (click)="toggleRightPanel()" style="color: black;">Portfolio</button>
-            </form>
-        </div>
-        <div class="form-container sign-in-container">
-            <form action="#" class="w-auto flex items-center justify-center p-6">
-                <img src="..\assets\\images\hello-animate.svg" alt="" class="hello">
-            </form> 
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-panel overlay-left">
-                    <h1 class="text-3xl ">I'm Shakir Ahamed</h1>
-                    <p class="text-white text-sm font-sans">Aspiring student who seeks to secure a challenging position in a organisation where i can upgrade my skills,knowledge and contribute  a significant service to the success of the organisation</p>
-                </div>
-                <div class="overlay-panel overlay-right">
-                    <i fxHide fxShow.sm fxShow.xs><h1 style="color: rgba(253, 249, 249, 0.647);" >Hola, Amigo's!</h1> </i>
-                    <app-hovername fxHide.sm fxHide.xs  ></app-hovername>
-                    <button class="ghost py-2 px-3"  (click)="toggleRightPanel()">Next</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<!-- navbar.component.html -->
-<!-- <nav class="bg-light flex items-center justify-between p-4">
-    <div class="flex items-center">
-      <a class="text-lg font-bold" href="#">My Brand</a>
-    </div>
-    <button
-      class="block lg:hidden text-gray-500 focus:outline-none"
-      (click)="isOpen = !isOpen"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-      </svg>
-    </button>
-    <div [ngClass]="{ 'block': isOpen, 'hidden': !isOpen }" class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-      <ul class="lg:flex lg:items-center lg:space-x-4">
-        <li class="nav-item">
-          <a class="block mt-4 lg:inline-block lg:mt-0 text-gray-700 hover:text-gray-900" href="#">First Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="block mt-4 lg:inline-block lg:mt-0 text-gray-700 hover:text-gray-900" href="#">Second Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="block mt-4 lg:inline-block lg:mt-0 text-gray-700 hover:text-gray-900" href="#">Third Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="block mt-4 lg:inline-block lg:mt-0 text-gray-700 hover:text-gray-900" href="#">Fourth Link</a>
-        </li>
-      </ul>
-    </div>
-  </nav> -->
-
-
-  <!-- <div class="header-container">
-    <header class="header1">
-      <nav class="header-nav flex items-center justify-between p-4 bg-gray-800 fixed w-full z-50" x-data="{ open: false }">
-        <div class="home">
-          <a href="#" class="text-purple-400 hover:text-white transition duration-300">Home</a>
-        </div>
-        <div class="hidden md:flex">
-          <ul class="header-right flex space-x-8">
-            <li><a href="#projects" class="text-purple-400 hover:text-white transition duration-300">Projects</a></li>
-            <li><a href="#skills" class="text-purple-400 hover:text-white transition duration-300">Skills</a></li>
-            <li><a href="#" class="text-purple-400 hover:text-white transition duration-300">Education</a></li>
-          </ul>
-        </div>
-        <div class="md:hidden">
-          <button click="open = !open" class="text-purple-400 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
-        </div>
-      </nav>
-      <div x-show="open" class="md:hidden bg-gray-800 w-full">
-        <ul class="flex flex-col items-center space-y-4 py-4">
-          <li><a href="#projects" class="text-purple-400 hover:text-white transition duration-300">Projects</a></li>
-          <li><a href="#skills" class="text-purple-400 hover:text-white transition duration-300">Skills</a></li>
-          <li><a href="#" class="text-purple-400 hover:text-white transition duration-300">Education</a></li>
-        </ul>
+<div class="bgchange fade-in" fxLayout fxLayoutAlign="center center ">
+  <div class="container" [class.right-panel-active]="rightPanelActive" >
+      <div class="form-container sign-up-container">
+          <form action="#">
+              <div class="w-52 flex items-center justify-center p-6 grayscale">
+                  <img src="..\assets\images\shakir.jpg" alt="me" class="shakir">
+              </div>
+              <button class="ghost portb text-sans text-sm rounded-full py-2 px-3" routerLink="/portfolio" (click)="portfolio();" style="color: black;">Portfolio</button>
+          </form>
       </div>
-    </header>
-  </div> -->
+      <div class="form-container sign-in-container">
+          <form action="#" class="w-auto flex items-center justify-center p-6 fade-right">
+              <img src="..\assets\\images\hello-animate.svg" alt="" class="hello">
+          </form> 
+      </div>
+      <div class="overlay-container">
+          <div class="overlay">
+              <div class="overlay-panel overlay-left">
+                  <h1 class="text-3xl ">I'm Shakir Ahamed</h1>
+                  <p class="text-white text-sm font-sans">Aspiring student who seeks to secure a challenging position in a organisation where i can upgrade my skills,knowledge and contribute  a significant service to the success of the organisation</p>
+              </div>
+              <div class="overlay-panel overlay-right ">
+                  <i fxHide fxShow.sm fxShow.xs class="fade-down"><h1 style="color: rgba(253, 249, 249, 0.647);" >Hola, Amigo's!</h1> </i>
+                  <app-hovername fxHide.sm fxHide.xs  class="fade-down"></app-hovername>
+                  <button class="ghost py-2 px-3 fade-up"  (click)="toggleRightPanel()">Next</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

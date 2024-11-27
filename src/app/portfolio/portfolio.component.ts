@@ -1,16 +1,15 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component,AfterViewInit,OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
-export class PortfolioComponent implements AfterViewInit {
-  
+export class PortfolioComponent implements AfterViewInit ,OnInit {
   ngOnInit(): void {
-    // Scroll the page to the top when the page loads
-    window.scrollTo(0, 0);
+   window.scrollTo(0, 0);
   }
+  
 
   ngAfterViewInit() {
     const videoElement: HTMLVideoElement = document.getElementById('backgroundVideo') as HTMLVideoElement;

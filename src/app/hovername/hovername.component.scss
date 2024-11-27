@@ -27,7 +27,7 @@
   /* this is the text, when you hover on button */
   .hover-text {
     position: absolute;
-    margin-top: 7px;
+    margin-top: 2px;
     box-sizing: border-box;
     content: attr(data-text);
     color: var(--animation-color);
