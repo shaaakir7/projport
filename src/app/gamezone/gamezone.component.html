@@ -1,0 +1,103 @@
+<div class="gaming-website">
+    <!-- Navbar -->
+    <header class="fixed top-0 w-full bg-gray-800 text-white z-40" id="header">
+        <nav class="flex justify-between items-center px-8 py-4">
+          <!-- Logo -->
+          <div class="text-xl font-bold">
+            <a routerLink="/" class="text-green-400 hover:text-white transition duration-300">GameZone</a>
+          </div>
+      
+          <!-- Hamburger Icon -->
+          <div class="md:hidden">
+            <button (click)="toggleMenu()" class="text-green-400 focus:outline-none">
+              <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            </button>
+          </div>
+      
+          <!-- Menu Items -->
+          <ul
+            [ngClass]="{'hidden': !isMenuOpen,'flex flex-col space-y-4 bg-gray-900 p-4': isMenuOpen,'md:flex md:flex-row md:space-y-0 md:space-x-8 md:bg-transparent md:p-0': true}"class="transition duration-300">
+            <li><a  [routerLink]="[]" fragment="home" class="text-green-400 hover:text-white transition duration-300">Home</a></li>
+            <li><a  [routerLink]="[]" fragment="games" class="text-green-400 hover:text-white transition duration-300">Games</a></li>
+            <li><a  [routerLink]="[]" fragment="about" class="text-green-400 hover:text-white transition duration-300">About Us</a></li>
+            <li><a  [routerLink]="[]" fragment="leaderboards" class="text-green-400 hover:text-white transition duration-300">Leaderboards</a></li>
+            <li><a  [routerLink]="[]" fragment="contact" class="text-green-400 hover:text-white transition duration-300">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+  
+    <!-- Full-Screen Video Snippet -->
+    <div class="relative w-full h-screen" id="home">
+      <video autoplay muted loop id="backgroundVideo" class="absolute top-0 left-0 w-full h-full object-cover z-10">
+        <source src="assets/images/montage.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-20"></div>
+      <div class="absolute welcometext top-1/2 left-0 transform -translate-x-1/2 -translate-y-1/2 z-30 text-center text-white text-5xl font-extrabold" style="font-family: 'Press Start 2P', cursive;">
+        <p>Welcome to GameZone</p>
+        <p>Your Gateway to Epic Adventures!</p>
+      </div>
+    </div>
+  
+    <!-- Games Section -->
+    <section id="games" class="py-20 px-8 bg-gray-900 text-white">
+      <h2 class="text-4xl text-green-400 font-bold text-center mb-12">Top Games</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img src="assets/images/game1.jpg" alt="Game 1" class="w-full h-56 object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Game 1: CyberQuest</h3>
+            <p class="text-gray-700 mb-4">An action-packed cyberpunk RPG with stunning visuals and immersive gameplay.</p>
+            <a href="https://example.com" target="_blank" class="text-green-400 hover:underline">Explore Game</a>
+          </div>
+        </div>
+  
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img src="assets/images/game2.jpg" alt="Game 2" class="w-full h-56 object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Game 2: Fantasy World</h3>
+            <p class="text-gray-700 mb-4">An open-world fantasy adventure with breathtaking landscapes and epic quests.</p>
+            <a href="https://example.com" target="_blank" class="text-green-400 hover:underline">Explore Game</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- About Us Section -->
+    <section id="about" class="bg-gray-900 text-white py-32 text-center">
+      <h1 class="text-5xl font-bold mb-4">About GameZone</h1>
+      <p class="text-lg mb-8">GameZone is a hub for gamers. We bring the latest news, reviews, and updates on the most exciting games in the industry.</p>
+      <a href="#contact" class="px-6 py-2 bg-green-400 text-white rounded-md hover:bg-green-500 transition duration-300">Join the Community</a>
+    </section>
+  
+    <!-- Leaderboards Section -->
+    <section id="leaderboards" class="py-16 px-8 bg-gray-100">
+      <h2 class="text-4xl text-green-400 font-bold text-center mb-12">Leaderboards</h2>
+      <div class="text-center text-xl">
+        <p>Compete with players worldwide and claim your spot on the leaderboard!</p>
+        <p class="text-green-500 font-bold mt-4">Coming Soon...</p>
+      </div>
+    </section>
+  
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-8 bg-gray-900 text-white">
+      <h2 class="text-4xl text-green-400 font-bold text-center mb-12">Stay Connected</h2>
+      <div class="max-w-md mx-auto">
+        <form action="#" method="POST" class="space-y-6">
+          <input type="text" name="name" placeholder="Your Name" class="w-full px-4 py-2 bg-gray-800 text-white rounded-md" required />
+          <input type="email" name="email" placeholder="Your Email" class="w-full px-4 py-2 bg-gray-800 text-white rounded-md" required />
+          <textarea name="message" placeholder="Your Feedback" class="w-full px-4 py-2 bg-gray-800 text-white rounded-md" rows="4" required></textarea>
+          <button type="submit" class="w-full px-6 py-2 bg-green-400 text-white rounded-md hover:bg-green-500 transition duration-300">Submit</button>
+        </form>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4 text-center">
+      <p>&copy; 2024 GameZone | All Rights Reserved</p>
+    </footer>
+  </div>
+  

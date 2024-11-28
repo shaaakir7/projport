@@ -1,0 +1,24 @@
+@media (max-width: 460px) {
+    .welcometext{
+        font-size: 20px;
+    }
+}
+@keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Apply animation to the welcome text */
+  .welcometext {
+    animation: fadeUp 1.5s ease-out both;
+  }
+
+  html {
+  scroll-behavior: smooth;
+}

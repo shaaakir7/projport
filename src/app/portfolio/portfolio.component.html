@@ -5,14 +5,34 @@
       <div class="text-xl font-bold">
         <a href="#header" class="text-purple-400 hover:text-white transition duration-300">Home</a>
       </div>
-      <ul class="flex space-x-8">
-        <li><a href="#about" class="text-purple-400 hover:text-white transition duration-300">About</a></li>
-        <li><a href="#projects" class="text-purple-400 hover:text-white transition duration-300">Projects</a></li>
-        <li><a href="#skills" class="text-purple-400 hover:text-white transition duration-300">Skills</a></li>
-        <li><a href="#contact" class="text-purple-400 hover:text-white transition duration-300">Contact</a></li>
+      <ul class="flex space-x-8 hidden md:flex">
+        <li><a [routerLink]="[]" fragment="about" class="text-purple-400 hover:text-white transition duration-300">About</a></li>
+        <li><a [routerLink]="[]" fragment="projects" class="text-purple-400 hover:text-white transition duration-300">Projects</a></li>
+        <li><a [routerLink]="[]" fragment="skills" class="text-purple-400 hover:text-white transition duration-300">Skills</a></li>
+        <li><a [routerLink]="[]" fragment="contact" class="text-purple-400 hover:text-white transition duration-300">Contact</a></li>
       </ul>
+  
+      <!-- Hamburger Icon -->
+      <div class="md:hidden flex flex-col space-y-2 cursor-pointer" id="hamburger" (click)="toggleMenu()">
+        <!-- <div class="w-6 h-0.5 bg-purple-400"></div>
+        <div class="w-6 h-0.5 bg-purple-400"></div>
+        <div class="w-6 h-0.3 bg-purple-400"></div> -->
+        <mat-icon class="text-purple-400" *ngIf="!isMenuOpen">subject</mat-icon>
+        <mat-icon class="text-purple-400" *ngIf="isMenuOpen">clear</mat-icon>
+      </div>
     </nav>
+    
+    <!-- Slide Menu -->
+    <div id="slideMenu" class="absolute top-0 right-0 w-2/3 bg-purple-200 text-white h-full" [ngClass]="{'open': isMenuOpen}">
+      <ul class="flex flex-col items-center py-10 space-y-6">
+        <li><a (click)="selectMenuItem('about')" [routerLink]="[]" fragment="about" class="text-white text-xl hover:text-gray-200 transition duration-300">About</a></li>
+        <li><a (click)="selectMenuItem('projects')" [routerLink]="[]" fragment="projects"  class="text-white text-xl hover:text-gray-200 transition duration-300">Projects</a></li>
+        <li><a (click)="selectMenuItem('skills')" [routerLink]="[]" fragment="skills" class="text-white text-xl hover:text-gray-200 transition duration-300">Skills</a></li>
+        <li><a (click)="selectMenuItem('contact')" [routerLink]="[]" fragment="contact" class="text-white text-xl hover:text-gray-200 transition duration-300">Contact</a></li>
+      </ul>
+    </div>
   </header>
+  
 
   <!-- Full-Screen Video Snippet -->
   <div class="relative w-full h-screen">

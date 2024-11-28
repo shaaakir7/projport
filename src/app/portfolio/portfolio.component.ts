@@ -1,4 +1,5 @@
 import { Component,AfterViewInit,OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-portfolio',
@@ -6,8 +7,35 @@ import { Component,AfterViewInit,OnInit } from '@angular/core';
   styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements AfterViewInit ,OnInit {
+
+  constructor(private route: ActivatedRoute) {}
+
+  isMenuOpen: boolean = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Close the menu when an item is selected
+  selectMenuItem(item: string): void {
+    console.log(`Selected item: ${item}`);
+    this.toggleMenu();  // Close the menu when an item is clicked
+  }
+  
   ngOnInit(): void {
    window.scrollTo(0, 0);
+
+   this.route.fragment.subscribe(fragment => {
+    if (fragment) {
+      // Wait for the content to be rendered, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(fragment);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
+    }
+  });
   }
   
 
