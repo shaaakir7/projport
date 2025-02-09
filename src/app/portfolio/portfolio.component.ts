@@ -23,6 +23,8 @@ export class PortfolioComponent implements AfterViewInit ,OnInit {
 
   isMenuOpen: boolean = false;
 
+  currentYear: number = new Date().getFullYear();
+  
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
