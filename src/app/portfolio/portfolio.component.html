@@ -151,41 +151,22 @@
   <!-- Skills Section -->
   <section id="skills" class="py-16 px-8 bg-gray-200">
     <h2 class="text-4xl text-purple-400 font-bold text-center mb-12">My Skills</h2>
+    
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 text-center">
-      <div>
-        <img src="assets/icons/angular.svg" alt="Angular" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">Angular</p>
+      <div *ngFor="let skill of skills">
+        <img [src]="skill.icon" [alt]="skill.name" class="skill-icon" />
+        <p class="skill-name">{{ skill.name }} ({{ skill.value }}%)</p>
+        
+        <!-- Custom Progress Bar -->
+        <div class="progress-bar">
+          <div class="progress-fill" [ngStyle]="{'width': skill.value + '%'}"></div>
+        </div>
       </div>
-      <div>
-        <img src="assets/icons/html5.svg" alt="HTML5" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">HTML5</p>
-      </div>
-      <div>
-        <img src="assets/icons/css3.svg" alt="CSS3" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">CSS3</p>
-      </div>
-      <div>
-        <img src="assets/icons/javascript.svg" alt="JavaScript" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">JavaScript</p>
-      </div>
-      <div>
-        <img src="assets/icons/nodejs.svg" alt="Node.js" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">Node.js</p>
-      </div>
-      <div>
-        <img src="assets/icons/webpack.svg" alt="Webpack" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">Webpack</p>
-      </div>
-      <div>
-        <img src="assets/icons/git.svg" alt="Git" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">Git</p>
-      </div>
-      <!-- <div>
-        <img src="assets/icons/firebase.svg" alt="Firebase" class="w-24 mx-auto mb-4" />
-        <p class="text-xl font-semibold">Firebase</p>
-      </div> -->
     </div>
   </section>
+  
+
+  
 
   <!-- Contact Section -->
   <section id="contact" class="py-16 px-8 bg-gray-900 text-white">

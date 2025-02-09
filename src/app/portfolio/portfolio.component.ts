@@ -1,4 +1,4 @@
-import { Component,AfterViewInit,OnInit } from '@angular/core';
+import { Component,AfterViewInit,OnInit, NgZone  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,7 +8,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PortfolioComponent implements AfterViewInit ,OnInit {
 
-  constructor(private route: ActivatedRoute) {}
+  skills = [
+    { name: 'HTML5', icon: '/assets/images/html5.svg', value: 0, target: 90 },
+    { name: 'CSS3', icon: '/assets/images/css.svg', value: 0, target: 90 },
+    { name: 'JavaScript', icon: '/assets/images/js.svg', value: 0, target: 70 },
+    { name: 'Angular', icon: '/assets/images/angular.svg', value: 0, target: 60 },
+    // { name: 'Node.js', icon: '/assets/icons/nodejs.svg', value: 0, target: 75 },
+    { name: 'Webpack', icon: '/assets/images/mysql.svg', value: 0, target: 70 },
+    { name: 'Webpack', icon: '/assets/images/wordpress.svg', value: 0, target: 85 },
+    { name: 'Git', icon: '/assets/images/git.svg', value: 0, target: 90 }
+  ];
+
+  constructor(private route: ActivatedRoute, private ngZone: NgZone) {}
 
   isMenuOpen: boolean = false;
 
@@ -36,7 +47,23 @@ export class PortfolioComponent implements AfterViewInit ,OnInit {
       }, 0);
     }
   });
+
+  this.skills.forEach((_, index) => {
+    setTimeout(() => this.animateSlider(index), 500);
+  });
   }
+
+  animateSlider(index: number) {
+    let interval = setInterval(() => {
+      if (this.skills[index].value < this.skills[index].target) {
+        this.skills[index].value += 1;
+      } else {
+        clearInterval(interval);
+      }
+    }, 10);
+  }
+  
+  
   
 
   ngAfterViewInit() {
