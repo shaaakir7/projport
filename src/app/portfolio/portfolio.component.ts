@@ -1,6 +1,13 @@
 import { Component,AfterViewInit,OnInit, NgZone  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+}
+
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
@@ -8,14 +15,35 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PortfolioComponent implements AfterViewInit ,OnInit {
 
+  projects: Project[] = [
+    {
+      title: 'E-commerce Website',
+      description: 'A fully responsive e-commerce website built with Angular and Firebase for seamless user experience.',
+      image: 'assets/images/proj1.png',
+      link: 'https://shazontrends.netlify.app/'
+    },
+    {
+      title: 'Personal Blog',
+      description: 'A personal blog built with Angular, allowing users to read and write blog posts, with a backend in Node.js.',
+      image: 'assets/images/project2.jpg',
+      link: 'https://example.com'
+    },
+    {
+      title: 'Portfolio Website',
+      description: 'A personal portfolio website showcasing my skills, projects, and achievements. Built with Angular and Tailwind CSS.',
+      image: 'assets/images/project3.jpg',
+      link: 'https://example.com'
+    }
+  ];
+
   skills = [
     { name: 'HTML5', icon: '/assets/images/html5.svg', value: 0, target: 90 },
     { name: 'CSS3', icon: '/assets/images/css.svg', value: 0, target: 90 },
     { name: 'JavaScript', icon: '/assets/images/js.svg', value: 0, target: 70 },
     { name: 'Angular', icon: '/assets/images/angular.svg', value: 0, target: 60 },
     // { name: 'Node.js', icon: '/assets/icons/nodejs.svg', value: 0, target: 75 },
-    { name: 'Webpack', icon: '/assets/images/mysql.svg', value: 0, target: 70 },
-    { name: 'Webpack', icon: '/assets/images/wordpress.svg', value: 0, target: 85 },
+    { name: 'MySQL', icon: '/assets/images/mysql.svg', value: 0, target: 70 },
+    { name: 'WordPress', icon: '/assets/images/wordpress.svg', value: 0, target: 85 },
     { name: 'Git', icon: '/assets/images/git.svg', value: 0, target: 90 }
   ];
 
