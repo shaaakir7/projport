@@ -24,15 +24,15 @@ export class PortfolioComponent implements AfterViewInit ,OnInit {
     },
     {
       title: 'Personal Blog',
-      description: 'A personal blog built with Angular, allowing users to read and write blog posts, with a backend in Node.js.',
-      image: 'assets/images/project2.jpg',
-      link: 'https://example.com'
+      description: 'A personal blog built with Angular, allowing users to read and write blog posts and its a practice project.',
+      image: 'assets/images/projcorporate.png',
+      link: 'https://corporate-table.netlify.app/'
     },
     {
       title: 'Portfolio Website',
       description: 'A personal portfolio website showcasing my skills, projects, and achievements. Built with Angular and Tailwind CSS.',
-      image: 'assets/images/project3.jpg',
-      link: 'https://example.com'
+      image: 'assets/images/projport.png',
+      link: 'https://projport.vercel.app/portfolio'
     }
   ];
 
