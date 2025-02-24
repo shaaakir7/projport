@@ -17,7 +17,7 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
 
   projects: Project[] = [
     {
-      title: 'E-commerce Website',
+      title: 'A2HS (Add to Home Screen) Website',
       description: 'A fully responsive e-commerce website built with Angular and Firebase for seamless user experience.',
       image: 'assets/images/proj1.png',
       link: 'https://shazontrends.netlify.app/'
