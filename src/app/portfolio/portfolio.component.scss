@@ -145,8 +145,8 @@ mat-slider-visual-thumb.mdc-slider__thumb.mat-mdc-slider-visual-thumb {
 
 
 // a2hd
-.install-btn {
-  background-color: #1976d2;
+.install-btn,.hovcol {
+  // background-color: #1976d2;
   color: white;
   border: none;
   padding: 4px 7px;
@@ -159,11 +159,12 @@ mat-slider-visual-thumb.mdc-slider__thumb.mat-mdc-slider-visual-thumb {
   gap: 0;
   margin-top: 0;
 
-  mat-icon {
-    font-size: 20px;
-  }
-
   &:hover {
     background-color: #1565c0;
   }
 }
+// .hovcol{
+//   &:hover {
+//     background-color: #1565c0;
+//   }
+// }
