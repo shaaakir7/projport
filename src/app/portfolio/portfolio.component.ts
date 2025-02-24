@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, NgZone, HostListener } from '@angular/core';
+import { Component, AfterViewInit, OnInit, NgZone, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 interface Project {
@@ -14,10 +14,12 @@ interface Project {
   styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements AfterViewInit, OnInit {
+
+  @ViewChild('projectsSection', { static: false }) projectsSection!: ElementRef;
   
   projects: Project[] = [
     {
-      title: 'A2HS (Add to Home Screen) Website Website',
+      title: 'A2HS (Add to Home Screen) Website',
       description: 'A fully responsive A2HS website built with Angular.',
       image: 'assets/images/proj1.png',
       link: 'https://shazontrends.netlify.app/'
@@ -42,15 +44,17 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
     { name: 'JavaScript', icon: '/assets/images/js.svg', value: 0, target: 70 },
     { name: 'Angular', icon: '/assets/images/angular.svg', value: 0, target: 60 },
     { name: 'MySQL', icon: '/assets/images/mysql.svg', value: 0, target: 70 },
+    { name: 'WordPress', icon: '/assets/images/wordpress.svg', value: 0, target: 85 },
     { name: 'Git', icon: '/assets/images/git.svg', value: 0, target: 90 }
   ];
-
-  constructor(private route: ActivatedRoute, private ngZone: NgZone) {}
 
   isMenuOpen: boolean = false;
   currentYear: number = new Date().getFullYear();
   deferredPrompt: any = null;
-  showInstallButton: boolean = true; // ✅ Always show initially
+  showInstallButton: boolean = true;
+  hasAnimated: boolean = false;
+
+  constructor(private route: ActivatedRoute, private ngZone: NgZone) {}
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -75,7 +79,6 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
       }
     });
 
-    // ✅ Hide the install button if the app is already installed
     if (
       window.matchMedia('(display-mode: standalone)').matches || 
       ('standalone' in window.navigator && (window.navigator as any).standalone)
@@ -85,29 +88,52 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
     }
   }
 
+  animateSlider(index: number) {
+    let interval = setInterval(() => {
+      if (this.skills[index].value < this.skills[index].target) {
+        this.skills[index].value += 1;
+      } else {
+        clearInterval(interval);
+      }
+    }, 10);
+  }
+
   ngAfterViewInit() {
     const videoElement: HTMLVideoElement = document.getElementById('backgroundVideo') as HTMLVideoElement;
     if (videoElement) {
       videoElement.muted = true;  
       videoElement.play();  
     }
+
+    if (this.projectsSection) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.hasAnimated) {
+            this.hasAnimated = true;
+            this.skills.forEach((_, index) => {
+              setTimeout(() => this.animateSlider(index), 500);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(this.projectsSection.nativeElement);
+    }
   }
 
-  // ✅ Capture the PWA install prompt
   @HostListener('window:beforeinstallprompt', ['$event'])
   onBeforeInstallPrompt(event: Event) {
     event.preventDefault(); 
     this.deferredPrompt = event; 
   }
 
-  // ✅ Show the install prompt when the button is clicked
   installPWA() {
     if (this.deferredPrompt) {
-      (this.deferredPrompt as any).prompt(); // Show install pop-up
+      (this.deferredPrompt as any).prompt();
       (this.deferredPrompt as any).userChoice.then((choiceResult: any) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the A2HS prompt');
-          this.showInstallButton = false; // Hide after installation
+          this.showInstallButton = false;
         } else {
           console.log('User dismissed the A2HS prompt');
         }
