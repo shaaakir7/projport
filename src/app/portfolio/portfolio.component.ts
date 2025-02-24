@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, NgZone, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnInit, NgZone, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 interface Project {
@@ -15,24 +15,22 @@ interface Project {
 })
 export class PortfolioComponent implements AfterViewInit, OnInit {
   
-  @ViewChild('projectsSection') projectsSection!: ElementRef; // Reference to projects section
-
   projects: Project[] = [
     {
-      title: 'A2HS (Add to Home Screen) Website',
-      description: 'A fully responsive e-commerce website built with Angular and Firebase for seamless user experience.',
+      title: 'A2HS (Add to Home Screen) Website Website',
+      description: 'A fully responsive A2HS website built with Angular.',
       image: 'assets/images/proj1.png',
       link: 'https://shazontrends.netlify.app/'
     },
     {
       title: 'Personal Blog',
-      description: 'A personal blog built with Angular, allowing users to read and write blog posts and its a practice project.',
+      description: 'A blog built with Angular for users to read and write posts.',
       image: 'assets/images/projcorporate.png',
       link: 'https://corporate-table.netlify.app/'
     },
     {
       title: 'Portfolio Website',
-      description: 'A personal portfolio website showcasing my skills, projects, and achievements. Built with Angular and Tailwind CSS.',
+      description: 'My personal portfolio built with Angular and Tailwind CSS.',
       image: 'assets/images/projport.png',
       link: 'https://projport.vercel.app/portfolio'
     }
@@ -44,7 +42,6 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
     { name: 'JavaScript', icon: '/assets/images/js.svg', value: 0, target: 70 },
     { name: 'Angular', icon: '/assets/images/angular.svg', value: 0, target: 60 },
     { name: 'MySQL', icon: '/assets/images/mysql.svg', value: 0, target: 70 },
-    { name: 'WordPress', icon: '/assets/images/wordpress.svg', value: 0, target: 85 },
     { name: 'Git', icon: '/assets/images/git.svg', value: 0, target: 90 }
   ];
 
@@ -52,7 +49,8 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
 
   isMenuOpen: boolean = false;
   currentYear: number = new Date().getFullYear();
-  hasAnimated: boolean = false; // Flag to prevent multiple animations
+  deferredPrompt: any = null;
+  showInstallButton: boolean = true; // ✅ Always show initially
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -77,20 +75,14 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
       }
     });
 
-    // Hide install button if PWA is already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) {
+    // ✅ Hide the install button if the app is already installed
+    if (
+      window.matchMedia('(display-mode: standalone)').matches || 
+      ('standalone' in window.navigator && (window.navigator as any).standalone)
+    ) {
+      console.log('App is already installed.');
       this.showInstallButton = false;
     }
-  }
-
-  animateSlider(index: number) {
-    let interval = setInterval(() => {
-      if (this.skills[index].value < this.skills[index].target) {
-        this.skills[index].value += 1;
-      } else {
-        clearInterval(interval);
-      }
-    }, 10);
   }
 
   ngAfterViewInit() {
@@ -99,42 +91,23 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
       videoElement.muted = true;  
       videoElement.play();  
     }
-
-    // Observe when the project section comes into view
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !this.hasAnimated) {
-          this.hasAnimated = true; // Ensure animation happens only once
-          this.skills.forEach((_, index) => {
-            setTimeout(() => this.animateSlider(index), 500);
-          });
-        }
-      });
-    }, { threshold: 0.3 });
-
-    if (this.projectsSection) {
-      observer.observe(this.projectsSection.nativeElement);
-    }
   }
 
-  // A2HS (Add to Home Screen) Functionality
-  private deferredPrompt: any = null;
-  showInstallButton: boolean = false;
-
+  // ✅ Capture the PWA install prompt
   @HostListener('window:beforeinstallprompt', ['$event'])
-  onBeforeInstallPrompt(event: any) {
-    event.preventDefault(); // Stop auto prompt
-    this.deferredPrompt = event;
-    this.showInstallButton = true; // Show button, but do NOT trigger the prompt yet
+  onBeforeInstallPrompt(event: Event) {
+    event.preventDefault(); 
+    this.deferredPrompt = event; 
   }
 
+  // ✅ Show the install prompt when the button is clicked
   installPWA() {
     if (this.deferredPrompt) {
-      this.deferredPrompt.prompt(); // Show install pop-up when user clicks the button
-      this.deferredPrompt.userChoice.then((choiceResult: any) => {
+      (this.deferredPrompt as any).prompt(); // Show install pop-up
+      (this.deferredPrompt as any).userChoice.then((choiceResult: any) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the A2HS prompt');
-          this.showInstallButton = false; // Hide button after install
+          this.showInstallButton = false; // Hide after installation
         } else {
           console.log('User dismissed the A2HS prompt');
         }
