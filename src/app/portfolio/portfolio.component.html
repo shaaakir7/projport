@@ -115,7 +115,7 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-20 px-8 bg-gray-100">
+  <!-- <section id="projects" class="py-20 px-8 bg-gray-100">
     <h2 class="text-4xl text-purple-400 font-bold text-center mb-12">My Projects</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
       <div *ngFor="let project of projects" class="bg-white rounded-lg shadow-lg overflow-hidden">
@@ -127,7 +127,24 @@
         </div>
       </div>
     </div>
+  </section> -->
+
+  <section id="projects" class="py-20 px-8 bg-gray-100">
+    <h2 class="text-4xl text-purple-400 font-bold text-center mb-12">My Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div *ngFor="let project of projects" class="project-card">
+        <a [href]="project.link" target="_blank" class="block">
+          <img [src]="project.image" [alt]="project.title" class="w-full h-56 object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">{{ project.title }}</h3>
+            <p class="text-gray-700 mb-4">{{ project.description }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
   </section>
+    
+  
   
 
   <!-- Skills Section -->

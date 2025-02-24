@@ -128,3 +128,16 @@ mat-slider-visual-thumb.mdc-slider__thumb.mat-mdc-slider-visual-thumb {
   background-color: #3b4cca; /* Primary blue color */
   transition: width 0.8s ease-in-out;
 }
+
+.project-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Default shadow */
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
+  transform: translateY(-5px); /* Slight lift effect */
+}
