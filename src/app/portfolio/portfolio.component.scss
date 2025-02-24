@@ -141,3 +141,29 @@ mat-slider-visual-thumb.mdc-slider__thumb.mat-mdc-slider-visual-thumb {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); /* Bigger shadow on hover */
   transform: translateY(-5px); /* Slight lift effect */
 }
+
+
+
+// a2hd
+.install-btn {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 4px 7px;
+  font-size: 11px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 0;
+
+  mat-icon {
+    font-size: 20px;
+  }
+
+  &:hover {
+    background-color: #1565c0;
+  }
+}

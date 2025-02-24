@@ -181,7 +181,37 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-4 text-center">
-    <p>&copy; {{ currentYear }} Shakir Ahamed | All Rights Reserved</p>
-  </footer>
+  <footer class="bg-gray-800 text-white py-4 text-center px-4" 
+  fxLayout="row" 
+  fxLayoutAlign="space-between center" 
+  fxLayout.lt-sm="column" 
+  fxLayoutAlign.lt-sm="center center">
+
+<p>&copy; {{ currentYear }} Shakir Ahamed | All Rights Reserved</p>
+
+<!-- Social Icons & Install App Button Container -->
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
+
+<!-- GitHub Icon -->
+<a href="https://github.com/your-github-username" target="_blank" matTooltip="GitHub">
+<mat-icon class="social-icon">code</mat-icon>
+</a>
+
+<!-- LinkedIn Icon -->
+<a href="https://linkedin.com/in/your-linkedin-username" target="_blank" matTooltip="LinkedIn">
+<mat-icon class="social-icon">business</mat-icon>
+</a>
+
+<!-- Install App Button -->
+<button *ngIf="showInstallButton" 
+      (click)="installPWA()" 
+      matTooltip="Install App" 
+      class="install-btn">
+<mat-icon>download</mat-icon>
+</button>
+
+</div>
+
+</footer>
+
 </div>
