@@ -168,3 +168,8 @@ mat-slider-visual-thumb.mdc-slider__thumb.mat-mdc-slider-visual-thumb {
 //     background-color: #1565c0;
 //   }
 // }
+@media (max-width: 599px) {
+  .skill-name {
+    font-size: 13px;
+  }
+}
