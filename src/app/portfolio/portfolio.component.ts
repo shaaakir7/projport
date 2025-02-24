@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit, NgZone, HostListener } from '@angular/core';
+import { Component, AfterViewInit, OnInit, NgZone, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 interface Project {
@@ -15,9 +15,11 @@ interface Project {
 })
 export class PortfolioComponent implements AfterViewInit, OnInit {
   
+  @ViewChild('projectsSection') projectsSection!: ElementRef; // Reference to projects section
+
   projects: Project[] = [
     {
-      title: 'E-commerce Website',
+      title: 'A2HS (Add to Home Screen) Website',
       description: 'A fully responsive e-commerce website built with Angular and Firebase for seamless user experience.',
       image: 'assets/images/proj1.png',
       link: 'https://shazontrends.netlify.app/'
@@ -50,6 +52,7 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
 
   isMenuOpen: boolean = false;
   currentYear: number = new Date().getFullYear();
+  hasAnimated: boolean = false; // Flag to prevent multiple animations
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
@@ -74,11 +77,7 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
       }
     });
 
-    this.skills.forEach((_, index) => {
-      setTimeout(() => this.animateSlider(index), 500);
-    });
-
-    // Check if PWA is already installed
+    // Hide install button if PWA is already installed
     if (window.matchMedia('(display-mode: standalone)').matches) {
       this.showInstallButton = false;
     }
@@ -96,27 +95,42 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit() {
     const videoElement: HTMLVideoElement = document.getElementById('backgroundVideo') as HTMLVideoElement;
-
     if (videoElement) {
       videoElement.muted = true;  
       videoElement.play();  
     }
+
+    // Observe when the project section comes into view
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !this.hasAnimated) {
+          this.hasAnimated = true; // Ensure animation happens only once
+          this.skills.forEach((_, index) => {
+            setTimeout(() => this.animateSlider(index), 500);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    if (this.projectsSection) {
+      observer.observe(this.projectsSection.nativeElement);
+    }
   }
 
   // A2HS (Add to Home Screen) Functionality
-  deferredPrompt: any = null;
+  private deferredPrompt: any = null;
   showInstallButton: boolean = false;
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onBeforeInstallPrompt(event: any) {
     event.preventDefault(); // Stop auto prompt
     this.deferredPrompt = event;
-    this.showInstallButton = true; // Show button only
+    this.showInstallButton = true; // Show button, but do NOT trigger the prompt yet
   }
 
   installPWA() {
     if (this.deferredPrompt) {
-      this.deferredPrompt.prompt(); // Show install pop-up
+      this.deferredPrompt.prompt(); // Show install pop-up when user clicks the button
       this.deferredPrompt.userChoice.then((choiceResult: any) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the A2HS prompt');
