@@ -14,6 +14,7 @@ interface Project {
   styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements AfterViewInit, OnInit {
+
   projects: Project[] = [
     {
       title: 'E-commerce Website',
@@ -76,6 +77,13 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
     this.skills.forEach((_, index) => {
       setTimeout(() => this.animateSlider(index), 500);
     });
+
+    // Check if PWA is already installed
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      this.showInstallButton = false;
+    } else {
+      this.showInstallButton = localStorage.getItem('pwa-installed') !== 'true';
+    }
   }
 
   animateSlider(index: number) {
@@ -98,14 +106,14 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
   }
 
   // A2HS (Add to Home Screen) Functionality
-  deferredPrompt: any;
+  deferredPrompt: any = null;
   showInstallButton: boolean = false;
 
   @HostListener('window:beforeinstallprompt', ['$event'])
   onBeforeInstallPrompt(event: Event) {
     event.preventDefault();
     this.deferredPrompt = event;
-    this.showInstallButton = true; // Show the install button
+    this.showInstallButton = true; // Always show the install button
   }
 
   installPWA() {
@@ -114,6 +122,8 @@ export class PortfolioComponent implements AfterViewInit, OnInit {
       this.deferredPrompt.userChoice.then((choiceResult: any) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the A2HS prompt');
+          localStorage.setItem('pwa-installed', 'true'); // Store that PWA is installed
+          this.showInstallButton = false; // Hide button after install
         } else {
           console.log('User dismissed the A2HS prompt');
         }
