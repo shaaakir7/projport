@@ -186,22 +186,17 @@
   
     <p>&copy; {{ currentYear }} Shakir Ahamed | All Rights Reserved</p>
   
-    <!-- Social Icons & Install App Button Container -->
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="16px">
   
-      <!-- GitHub Icon -->
       <a href="https://github.com/shaaakir7" target="_blank" matTooltip="GitHub" class="hovcol">
         <i class="ti ti-brand-github text-white text-2xl"></i>
       </a>
   
-      <!-- LinkedIn Icon -->
       <a href="https://www.linkedin.com/in/shakir-ahamed-468266245/" target="_blank" matTooltip="LinkedIn" class="hovcol">
         <i class="ti ti-brand-linkedin text-white text-2xl"></i>
       </a>
   
       <!-- Install App Button -->
-      
-      <!-- for sm -->
       <button *ngIf="showInstallButton" (click)="installPWA()" matTooltip="Install App" class="install-btn">
         <i class="ti ti-device-desktop-down text-white text-2xl"></i> <span fxShow.xs fxHide> Install as App</span>
       </button>
