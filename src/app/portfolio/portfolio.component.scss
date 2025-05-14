@@ -95,7 +95,9 @@ body {
 
 /* Background color for the slide-in menu */
 #slideMenu .flex {
-  background-color: #d4bded; /* Make sure the entire menu has the same background */
+  background-color: #c7cad0;
+  height: 100vh;
+
 }
 
 
@@ -172,4 +174,22 @@ mat-slider-visual-thumb.mdc-slider__thumb.mat-mdc-slider-visual-thumb {
   .skill-name {
     font-size: 13px;
   }
+}
+.mat-sidenav-container {
+  position: relative;
+}
+
+.mat-sidenav {
+  width: 250px;
+  background-color: #d8b4fe;
+  color: white;
+}
+
+.mat-sidenav-content {
+  position: relative;
+  z-index: 10;
+}
+
+.mat-sidenav-content {
+  // background-color: transparent;
 }

@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSliderModule,
     BrowserAnimationsModule,
     MatTooltipModule,
+    MatSidenavModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
